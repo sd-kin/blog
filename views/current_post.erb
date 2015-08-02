@@ -13,7 +13,12 @@
 <hr>
 <h2>comments there</h2>
 
-<form action ="/posts/<%=@current_post[0]['id']%>" method="POST">
+<%@all_comments.each do |comment|%> 
+<%= comment['content']%> <br/>
+<hr>
+<%end%>
+
+<form action ="/posts/<%=@current_post[0]['id']%>" method="POST" >
   <textarea class="form-control" rows="6" placeholder="Nothing better then good comment" name="comment"></textarea>
   <br/>
   <button type="submit" class="btn btn-primary">Comment</button>

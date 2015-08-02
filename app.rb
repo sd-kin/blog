@@ -59,12 +59,21 @@ end
 get '/posts/:post_id' do
 post_id = params[:post_id]
 @current_post=@db.execute'SELECT * FROM posts WHERE id = ?', [post_id]
+@all_comments = @db.execute'SELECT content FROM comments WHERE post_id = ?', [post_id]
+
 erb :current_post
 end
 
 post '/posts/:post_id' do
 post_id = params[:post_id]
 @comment = params[:comment]
+@current_post=@db.execute'SELECT * FROM posts WHERE id = ?', [post_id]
 
-erb "comment - #{@comment} for post #{post_id}"
+if @comment.length <= 0 then @error = 'You comment is empty'
+		return erb :current_post
+	 end
+
+@db.execute 'insert into comments (post_id, content, created_date) values(?,?,datetime())', [post_id, @comment]
+@all_comments = @db.execute'SELECT content FROM comments WHERE post_id = ?', [post_id]
+erb :current_post
 end
