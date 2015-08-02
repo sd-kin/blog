@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+<h1>Post</h1>
+
+<%=@current_post[0]['content']%> <br/>
+<%=@current_post[0]['created_date']%>
+<br/>
+
+<hr>
+<h2>comments there</h2>
+
+<form action ="/posts/<%=@current_post[0]['id']%>" method="POST">
+  <textarea class="form-control" rows="6" placeholder="Nothing better then good comment" name="comment"></textarea>
+  <br/>
+  <button type="submit" class="btn btn-primary">Comment</button>
+</form>
+</body>
+
+
+</html>

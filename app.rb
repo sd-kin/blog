@@ -50,5 +50,6 @@ end
 
 get '/posts/:post_id' do
 post_id = params[:post_id]
-erb "id of this post #{post_id}"
+@current_post=@db.execute'SELECT * FROM posts WHERE id = ?', [post_id]
+erb :current_post
 end
