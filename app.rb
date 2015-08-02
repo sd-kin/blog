@@ -22,6 +22,14 @@ init_db
 created_date DATE,
 content TEXT
 )'
+
+@db.execute 'CREATE TABLE IF NOT EXISTS "comments" 
+(
+"id" INTEGER PRIMARY KEY AUTOINCREMENT,
+post_id INTEGER,
+created_date DATE,
+content TEXT
+)'
 end
 
 get '/' do
@@ -52,4 +60,11 @@ get '/posts/:post_id' do
 post_id = params[:post_id]
 @current_post=@db.execute'SELECT * FROM posts WHERE id = ?', [post_id]
 erb :current_post
+end
+
+post '/posts/:post_id' do
+post_id = params[:post_id]
+@comment = params[:comment]
+
+erb "comment - #{@comment} for post #{post_id}"
 end
