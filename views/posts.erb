@@ -8,6 +8,8 @@
 <%@all_posts.each do |post|%>
 <%=post['content']%> <br/>
 <%=post['created_date']%>
+<br/>
+<a href="/posts/<%=post['id']%>">comment</a>
 <hr>
 <%end%>
 </body>

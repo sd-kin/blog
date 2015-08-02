@@ -47,3 +47,8 @@ get '/posts' do
 @all_posts = @db.execute'SELECT * FROM posts ORDER BY id DESC'
 erb :posts
 end
+
+get '/posts/:post_id' do
+post_id = params[:post_id]
+erb "id of this post #{post_id}"
+end
