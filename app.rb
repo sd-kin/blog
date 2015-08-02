@@ -35,6 +35,10 @@ end
 post '/newpost' do
 
 @text=params[:text]
+	if @text.length <= 0 then @error = 'You post is empty'
+		return erb :newpost
+	 end
+@db.execute 'insert into posts (content, created_date) values(?,datetime())', [@text]
 erb "Nothing better then good post. \n #{@text}"
 end
 
