@@ -15,9 +15,9 @@
 
 <%@all_comments.each do |comment|%> 
 <%= comment['content']%> <br/>
+<span style="font-size: 75%; color: grey"> Added at: <%= comment['created_date']%> <br/></span>
 <hr>
 <%end%>
-
 <form action ="/posts/<%=@current_post[0]['id']%>" method="POST" >
   <textarea class="form-control" rows="6" placeholder="Nothing better then good comment" name="comment"></textarea>
   <br/>
