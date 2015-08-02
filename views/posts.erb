@@ -5,7 +5,11 @@
 
 <body>
 <h1>Post</h1>
-
+<%@all_posts.each do |post|%>
+<%=post['content']%> <br/>
+<%=post['created_date']%>
+<hr>
+<%end%>
 </body>
 
 

@@ -40,8 +40,10 @@ post '/newpost' do
 	 end
 @db.execute 'insert into posts (content, created_date) values(?,datetime())', [@text]
 erb "Nothing better then good post. \n #{@text}"
+redirect to '/posts'
 end
 
 get '/posts' do
+@all_posts = @db.execute'SELECT * FROM posts ORDER BY id DESC'
 erb :posts
 end
